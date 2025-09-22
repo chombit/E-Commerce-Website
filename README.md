@@ -67,3 +67,14 @@ export default defineConfig([
   },
 ])
 ```
+state:is mutable that store data /info about the componentcan,ownership by component,component local data  manage
+state with in the component can be access
+props :parent to child props is not muatable ,parent ownership,focus paret data to child transfer
+state intialize use state()
+dark and light pass 
+post>postcatag>detail
+it is global container hulume access meyaregute mekemetebete
+create cotext
+create provider
+make provide accesable
+use it
