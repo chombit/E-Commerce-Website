@@ -1,6 +1,6 @@
 import { Mail, MapPin, Phone, ShoppingCart } from "lucide-react"
 
-function Header(){
+function Footer(){
     return(
     <div  className="bg-slate-900 text-gray-400 h-[500px]">
         <div className="grid grid-cols-4 grid-rows-1 pl-[200px] pt-[50px] gap-4  ">
@@ -50,4 +50,4 @@ Get the latest deals and product updates
     </div>
     )
 }
-export default Header
+export default Footer
