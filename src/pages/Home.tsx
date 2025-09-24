@@ -1,4 +1,4 @@
-import { ArrowRight, CarIcon, RefreshCcw, Shield, ShoppingCart, Star, Truck } from "lucide-react";
+import { AlignRight, ArrowLeft, ArrowRight, CarIcon, Check, Mail, RefreshCcw, Shield, ShoppingCart, Star, Truck } from "lucide-react";
 import { useEffect, useState } from "react";
 import Api, { type Product } from "../services/Apic"; 
 
@@ -46,7 +46,7 @@ function Home() {
   return (
     <>
 
-    <div className="bg-gradient-to-tl from-pink-600 to-blue-700 h-screen text-white overflow-auto grid grid-cols-2">
+    <div className="bg-gradient-to-tl from-pink-600 to-blue-900 h-screen text-white overflow-auto grid grid-cols-2">
       {/* Header */}
       <div>
       
@@ -97,13 +97,13 @@ function Home() {
       {/* Product Carousel */}
       <div className="relative flex flex-col items-center justify-center p-10">
         {post.length > 0 && (
-          <div key={post[currentIndex].id} className="relative w-full  text-center bg-white/10 rounded-2xl p-8 shadow-xl overflow-hidden">
+          <div key={post[currentIndex].id} className="relative w-[600px] h-[700px] text-center bg-white/10 rounded-2xl p-8 shadow-xl overflow-hidden">
             <img
               src={post[currentIndex].image}
               alt={post[currentIndex].title}
               className="h-72 mx-auto object-contain drop-shadow-xl"
             />
-            <h3 className="mt-6 text-2xl font-semibold">
+            <h3 className="mt-24 text-2xl font-semibold">
               {post[currentIndex].title}
             </h3>
             <div className="mt-2 text-yellow-300">
@@ -177,7 +177,7 @@ Only the best products <br /> <span className="flex justify-center">for you</spa
           <p className="flex justify-center pt-4">Check out our most popular products</p>
         </div>
 {/* First 4 Products */}
-<div className="grid grid-cols-4 gap-[40px] items-center align-middle ml-[200px] p-6 w-[1500px]">
+<div className="grid grid-cols-4 gap-[40px] items-center align-middle ml-[300px] p-6 w-[1300px]">
   {post.slice(0, 4).map((pon) => (
     <div className="border-0 rounded-2xl h-[550px] bg-white shadow-md shadow-gray-400 p-1">
       <p className="inline-block self-start border-0 rounded-3xl px-3 py-1 text-[12px] bg-gradient-to-r from-blue-700 to-pink-400 text-white font-bold mb-2">
@@ -191,17 +191,17 @@ Only the best products <br /> <span className="flex justify-center">for you</spa
       </div>
       <p className="pl-3 pt-1 text-[25px] font-bold text-green-500">${pon.price}</p>
       <p className="p-3 text-black/60" dangerouslySetInnerHTML={{ __html: limitation(pon.description) }} />
-      <button className="flex justify-center text-white font-bold bg-gradient-to-r from-blue-600 to-pink-600 p-2 ml-2 mt-3 rounded-2xl w-[300px]">
-        <ShoppingCart /> Add to Cart
+      <button className="flex items-center justify-center text-white font-bold bg-gradient-to-r from-blue-600 to-pink-600 p-2 ml-2 rounded-2xl w-[250px]">
+        <ShoppingCart  className="mr-[10px]"/> Add to Cart
       </button>
     </div>
   ))}
 </div>
 
 {/* Second 4 Products */}
-<div className="grid grid-cols-4 gap-[40px] items-center align-middle ml-[200px] p-6 w-[1500px]">
+<div className="grid grid-cols-4 gap-[40px] items-center align-middle ml-[300px] p-6 w-[1300px]">
   {post.slice(4, 8).map((pon) => (
-    <div className="border-0 rounded-2xl h-[550px] bg-white shadow-md shadow-gray-400 p-1">
+    <div className="border-0 rounded-2xl h-[530px] bg-white shadow-md shadow-gray-400 p-1">
       <p className="inline-block self-start border-0 rounded-3xl px-3 py-1 text-[12px] bg-gradient-to-r from-blue-700 to-pink-400 text-white font-bold mb-2">
         {pon.category}
       </p>
@@ -213,13 +213,46 @@ Only the best products <br /> <span className="flex justify-center">for you</spa
       </div>
       <p className="pl-3 pt-1 text-[25px] font-bold text-green-500">${pon.price}</p>
       <p className="p-3 text-black/60" dangerouslySetInnerHTML={{ __html: limitation(pon.description) }} />
-      <button className="flex justify-center text-white font-bold bg-gradient-to-r from-blue-600 to-pink-600 p-2 ml-2 mt-3 rounded-2xl w-[300px]">
-        <ShoppingCart /> Add to Cart
-      </button>
+      <button className="flex items-center justify-center text-white font-bold bg-gradient-to-r from-blue-600 to-pink-600 p-2 ml-2 rounded-2xl w-[250px]">
+  <ShoppingCart className="mr-2" /> Add to Cart
+</button>
+
     </div>
   ))}
+  <button className="flex ml-[500px] bg-blue-600 w-[180px] h-[60px] items-center p-[10px] text-white rounded-2xl justify-center">
+    View Product <ArrowRight className="text-white ml-2"/>
+  </button>
 </div>
 
+      </div>
+      <div className="h-[600px] bg-gradient-to-tl from-pink-600 to-blue-900 ">
+        <div className="pl-[870px] pt-[80px]"> <span className="bg-white/40 w-20 h-20 flex justify-center items-center rounded-full"><Mail className="text-white w-8 h-8"/></span> 
+       
+      </div> 
+      <p className="font-bold text-5xl ml-[790px] text-white mt-3">Stay Updated</p>
+      <p className="ml-[680px] text-2xl pt-2 text-white/75">Get exclusive deals, new product alerts, and insider tips <br /> <span className="pl-[100px]">delivered to your inbox</span></p>
+   <div className="flex ml-[690px] mt-[40px]">
+    <form action="
+    ">
+      <input className="border-1 p-[15px] text-white  border-white rounded-2xl w-[400px]" type="text" placeholder ="Enter your email address" />
+    </form>
+    <button className=" flex justify-center bg-white text-blue-800 font-bold  ml-6 p-4 rounded-2xl w-[150px]">
+      Subscribe <ArrowRight className="ml-3.5"/> 
+    </button>
+   </div>
+
+   <ul className=" flex ml-[700px] space-x-7 mt-6 text-[15px] ">
+    <li className="flex text-blue-300/80"><Check className="mr-3 flex items-baseline w-4 h-7" />No spam, ever</li>
+     <li className="flex text-blue-300/80"><Check className="mr-3 flex items-baseline w-4 h-7" />Unsubscribe anytime</li>
+      <li className="flex text-blue-300/80"><Check className="mr-3 flex items-baseline w-4 h-7" />Weekly updates</li>
+   </ul>
+   <div className="mt-[20px]">
+    <ul className="flex ml-[580px] space-x-60">
+      <li className="text-4xl font-bold text-white">10K+ <br /><span className="text-white/55 text-[15px]">Subscribers</span></li>
+      <li  className="text-4xl font-bold text-white">98% <br /><span className="text-white/55 text-[15px]">Open Rate</span></li>
+      <li className="text-4xl font-bold text-white">24h <br /> <span className="text-white/55 text-[15px]">Response Time</span></li>
+    </ul>
+   </div>
       </div>
     </div>
         </>
