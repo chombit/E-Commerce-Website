@@ -361,7 +361,7 @@ function Home() {
           <svg className="w-full h-20 fill-white dark:fill-gray-800" viewBox="0 0 1440 120" preserveAspectRatio="none">
             <path d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,85.3C672,75,768,85,864,96C960,107,1056,117,1152,112C1248,107,1344,85,1392,74.7L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z" />
           </svg>
-        </div>
+      </div>
       </section>
    
     <div className="bg-white/50 dark:bg-gray-900 dark:text-white">
@@ -397,15 +397,16 @@ Only the best products <br /> <span className="flex justify-center">for you</spa
           <p className="flex justify-center pt-4">Check out our most popular products</p>
         </div>
 {/* First 4 Products */}
-<div className="grid grid-cols-4 gap-[40px] items-center align-middle ml-[300px] p-6 w-[1300px]">
+<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch p-6">
   {post.slice(0, 4).map((pon) => (
-     <div key={pon.id} className="border-0 rounded-2xl h-[550px] bg-white shadow-md shadow-gray-400 p-1 dark:bg-gray-800 dark:text-white">
+     <div key={pon.id} className="border-0 rounded-2xl bg-white shadow-md shadow-gray-400 p-4 dark:bg-gray-800 dark:text-white">
       <p
         className={`inline-block self-start border-0 rounded-3xl px-3 py-1 text-[12px] text-white font-bold mb-2 bg-gradient-to-r from-pink-500 to-blue-900`}
       >
         {pon.category}
       </p>
-      <img className="w-[300px] h-[250px] object-contain" src={pon.image} alt="" />
+      <img className="w-full h-[220px] object-contain" src={pon.image} alt="" />
       <h1 className="pl-3 py-1 font-bold" dangerouslySetInnerHTML={{ __html: limi(pon.title) }} />
       <div className="flex items-center gap-2 text-sm pl-3">
         <span className="text-yellow-800">⭐ {pon.rating.rate}</span>
@@ -425,24 +426,26 @@ Only the best products <br /> <span className="flex justify-center">for you</spa
           })
         }
         disabled={cartt?.cartItems.some((i)=> i.id===pon.id.toString())}
-        className={`flex items-center justify-center text-white font-bold  p-2 ml-2 rounded-2xl w-[250px] ${cartt?.cartItems.some((i)=> i.id===pon.id.toString()) ? 'bg-gray-400 cursor-not-allowed' : 'bg-gradient-to-r from-pink-500 to-blue-900'}`}
+        className={`flex items-center justify-center text-white font-bold  p-2 ml-2 rounded-2xl w-full ${cartt?.cartItems.some((i)=> i.id===pon.id.toString()) ? 'bg-gray-400 cursor-not-allowed' : 'bg-gradient-to-r from-pink-500 to-blue-900'}`}
       >
         <ShoppingCart className="mr-[10px]" /> {cartt?.cartItems.some((i)=> i.id===pon.id.toString()) ? 'In Cart' : 'Add to Cart'}
       </button>
     </div>
   ))}
 </div>
+</div>
 
 {/* Second 4 Products */}
-<div className="grid grid-cols-4 gap-[40px] items-center align-middle ml-[300px] p-6 w-[1300px] ">
+<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch p-6 ">
   {post.slice(4, 8).map((pon) => (
-    <div className="border-0 rounded-2xl h-[530px] bg-white shadow-md shadow-gray-400 p-1 dark:bg-gray-800 dark:text-white">
+    <div className="border-0 rounded-2xl bg-white shadow-md shadow-gray-400 p-4 dark:bg-gray-800 dark:text-white">
       <p
         className={`inline-block self-start border-0 rounded-3xl px-3 py-1 text-[12px] text-white font-bold mb-2 bg-gradient-to-r from-pink-500 to-blue-900`}
       >
         {pon.category}
       </p>
-      <img className="w-[300px] h-[250px] object-contain" src={pon.image} alt="" />
+      <img className="w-full h-[220px] object-contain" src={pon.image} alt="" />
       <h1 className="pl-3 py-1 font-bold" dangerouslySetInnerHTML={{ __html: limi(pon.title) }} />
       <div className="flex items-center gap-2 text-sm pl-3">
         <span className="text-yellow-800">⭐ {pon.rating.rate}</span>
@@ -457,15 +460,18 @@ Only the best products <br /> <span className="flex justify-center">for you</spa
             image: pon.image,
             quantity: 1,
           })
-        } className="flex items-center justify-center text-white font-bold bg-gradient-to-r from-pink-500 to-blue-900 p-2 ml-2 rounded-2xl w-[250px]">
+        } className="flex items-center justify-center text-white font-bold bg-gradient-to-r from-pink-500 to-blue-900 p-2 ml-2 rounded-2xl w-full">
   <ShoppingCart className="mr-2" /> Add to Cart
 </button>
 
     </div>
   ))}
-  <button className="flex ml-[500px] bg-blue-600 w-[180px] h-[60px] items-center p-[10px] text-white rounded-2xl justify-center">
+  <div className="flex justify-center p-6">
+  <button className="bg-blue-600 min-w-[180px] h-[48px] items-center px-4 text-white rounded-2xl justify-center">
     View Product <ArrowRight className="text-white ml-2"/>
   </button>
+  </div>
+</div>
 </div>
 
       </div>
