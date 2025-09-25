@@ -1,8 +1,8 @@
 import { useEffect, useState, useContext } from "react"
 import { ShoppingCart } from "lucide-react"
 
-import Api, { type Product } from "../services/Apic"; 
-import { Link } from "react-router-dom";
+import Api, { type Product } from "../services/Apic";
+import { Link, useLocation } from "react-router-dom";
 import { CartCont } from "../Context/CartContext";
 
 
@@ -12,6 +12,7 @@ function Product(){
     const [minPrice, setMinPrice] = useState<string | number>("")
     const [maxPrice, setMaxPrice] = useState<string | number>("")
    const cart = useContext(CartCont);
+   const location = useLocation();
        function limi(title:string){
       if(title.length >25){
         return title.substring(0,20)+'...'
@@ -28,14 +29,27 @@ function Product(){
         return description;
       }
   }
+  
   useEffect(() => {
-    Api.getAllProduct()
+   Api.getAllProduct()
       .then((data) => {
         setPost(data)
         setAllProducts(data)
       })
       .catch((err) => console.error(err));
   }, []);
+  // Apply category filter from query param when location changes and products are loaded
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const categoryParam = params.get('category');
+    if (categoryParam && allProducts.length > 0) {
+      const filtered = allProducts.filter((p) => p.category.toLowerCase() === categoryParam.toLowerCase());
+      setPost(filtered);
+    }
+    if (!categoryParam && allProducts.length > 0) {
+      setPost(allProducts);
+    }
+  }, [location.search, allProducts]);
     const clearFilters = () => {
       setMinPrice("")
       setMaxPrice("")
@@ -152,7 +166,9 @@ function Product(){
             const inCart = !!cart?.cartItems.some((i) => i.id === pon.id.toString());
             return (
              <div key={pon.id} className="border-0 rounded-2xl  dark:shadow-gray-700 h-[530px] dark:bg-gray-800 dark:text-white bg-white shadow-md shadow-gray-400 p-1 transition-transform duration-200 hover:-translate-y-2">
-                  <p className="inline-block self-start border-0 rounded-3xl px-3 py-1 text-[12px] bg-gradient-to-r from-blue-700 to-pink-400 text-white font-bold mb-2">
+      <p
+        className={`inline-block self-start border-0 rounded-3xl px-3 py-1 text-[12px] text-white font-bold mb-2 bg-gradient-to-r from-pink-500 to-blue-900`}
+      >
         {pon.category}
       </p>
       <img className="w-[300px] h-[250px] object-contain hover:scale-105" src={pon.image} alt="" />
@@ -178,7 +194,7 @@ function Product(){
           })
         }
         disabled={inCart}
-        className={`flex items-center justify-center text-white font-bold  p-2 ml-2 rounded-2xl w-[250px] ${inCart ? 'bg-gray-400 cursor-not-allowed' : 'bg-gradient-to-r from-blue-600 to-pink-600 hover:scale-105'}`}
+        className={`flex items-center justify-center text-white font-bold  p-2 ml-2 rounded-2xl w-[250px] ${inCart ? 'bg-gray-400 cursor-not-allowed' : 'bg-gradient-to-r from-pink-500 to-blue-900 hover:scale-105'}`}
       >
   <ShoppingCart className="mr-2" /> {inCart ? 'In Cart' : 'Add to Cart'}
 </button>

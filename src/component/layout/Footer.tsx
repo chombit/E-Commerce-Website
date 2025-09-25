@@ -5,12 +5,14 @@ function Footer(){
     <div  className="bg-slate-900 text-gray-400 h-[500px]">
         <div className="grid grid-cols-4 grid-rows-1 pl-[200px] pt-[50px] gap-4  ">
             <div>
-                <ShoppingCart className="my-[10px] text-blue-600 w-8 h-8"/>
+                <div className="inline-flex items-center justify-center rounded-full p-1 bg-gradient-to-r from-pink-500 to-blue-900 my-[10px]">
+                  <ShoppingCart className="w-6 h-6 text-white"/>
+                </div>
                 <p>Your one-stop destination for quality <br />products at great prices. Shop with <br />confidence and enjoy fast, reliable <br />delivery.</p>
                 <ul className="mt-[20px]">
-                    <li className=" flex py-1"> <Mail className="w-5 h-5 text-blue-500  mr-2" /> support@birhanu.et</li>
-                    <li className=" flex py-1 "> <Phone className="w-5 h-5 text-blue-500 mr-2" /> +2519999999</li>
-                    <li className=" flex py-1">  <MapPin className="w-5 h-5 text-blue-500  mr-2" />Addis Ababa, Ethiopia</li>
+                    <li className=" flex py-1"> <Mail className="w-5 h-5 text-pink-400 mr-2" /> support@birhanu.et</li>
+                    <li className=" flex py-1 "> <Phone className="w-5 h-5 text-blue-400 mr-2" /> +2519999999</li>
+                    <li className=" flex py-1">  <MapPin className="w-5 h-5 text-pink-400 mr-2" />Addis Ababa, Ethiopia</li>
                 </ul>
  
             </div>
@@ -53,7 +55,7 @@ Get the latest deals and product updates
 <form action="
     " className="ml-[690px] flex">
       <input className="border-1 pl-[15px] text-white bg-gray-500/15 border-white/30 rounded-l-2xl w-[300px]" type="text" placeholder ="Enter your email address" />
-     <button className=" flex justify-center bg-blue-700 text-white font-bold  rounded-r-2xl p-2 w-[150px]">
+     <button className=" flex justify-center bg-gradient-to-r from-pink-500 to-blue-900 text-white font-bold  rounded-r-2xl p-2 w-[150px]">
       Subscribe <ArrowRight className="ml-3.5"/> 
     </button>
     </form>

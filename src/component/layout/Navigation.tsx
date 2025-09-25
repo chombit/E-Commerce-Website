@@ -17,11 +17,10 @@ function Navigation() {
         
         {/* Logo / Icon */}
         <button className="flex items-center space-x-2 text-2xl font-bold">
-          <ShoppingCart className="w-8 h-8 text-white bg-gradient-to-r from-pink-500 to-violet-500 rounded-full p-1" />
-      
+          <ShoppingCart className="w-10 h-8 text-white bg-gradient-to-r from-pink-500 to-blue-900 rounded-full p-1" />
+       <p className="flex text-[15px]"> Tina-Mart</p>
         </button>
-
-        {/* Desktop Nav */}
+   
         <nav className="space-x-[50px] px-[10px] ml-8 hidden md:block dark:text-white">
              <Link to="/">Home</Link>
             <Link to="/product">Products</Link>
@@ -29,7 +28,7 @@ function Navigation() {
             <Link to="/about">About</Link>
               <Link to="/contact">Contact</Link>
         </nav>
-           <button className="flex w-[400px]  ml-6 border-1 border-gray-200 rounded-2xl p-2 shadow-2xl shadow-gray-300  ">
+           <button className="flex w-[400px]  ml-6 border-1 border-gray-200 rounded-2xl p-2   ">
 
          <Search/>
           <input  type="text" className="px-4  bg-transparent" placeholder="Search..."/>
@@ -43,16 +42,18 @@ function Navigation() {
         </div> 
       
         <Link to="/cart" className="relative">
-          <ShoppingCart/>
+          <span className="inline-flex items-center justify-center rounded-full p-1 ">
+            <ShoppingCart className="w-6 h-6 text-black" />
+          </span>
           {itemCount > 0 && (
-            <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full px-2 py-0.5">
+            <span className="absolute -top-2 -right-2 bg-gradient-to-r from-pink-500 to-blue-900 text-white text-xs rounded-full px-2 py-0.5">
               {itemCount}
             </span>
           )}
         </Link>
-         <button className="flex ml-6 p-1 border-2 border-blue-600 rounded-xl">
+         <button className="flex ml-6 p-1 rounded-xl border-1  text-blue-600 items-center px-3">
         <LogInIcon className="text-blue-600"/>
-          <p className="px-4 text-blue-600"> Login</p> 
+          <p className="px-2"> Login</p> 
          </button>
        
       </div>

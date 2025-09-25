@@ -4,6 +4,7 @@ import Navigation from "./component/layout/Navigation"
 import { Routes, Route } from "react-router-dom"
 import Footer from "./component/layout/Footer"
 import { Suspense, lazy } from "react"
+import Catagory from "./pages/Catagories"
 
 const ProductPage = lazy(() => import("./pages/Product"))
 const ProductDetail = lazy(() => import("./pages/productDetail"))
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/Catagory" element={<Catagory/>}/>
         <Route path="/cart" element={<CartPage />} />
       </Routes>
       </Suspense>
