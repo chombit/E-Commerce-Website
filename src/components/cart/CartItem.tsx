@@ -1,48 +1,69 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import type { CartItem as CartItemType } from '../../types';
-import { Trash2, Plus, Minus } from 'lucide-react';
-import { useCart } from '../../context/CartContext';
+import { useContext } from "react";
+import { CartCont, type CartItem as CartItemType } from "../../Context/CartContext";
 
 interface CartItemProps {
   item: CartItemType;
 }
 
-const CartItem: React.FC<CartItemProps> = ({ item }) => {
-  const { updateQuantity, removeFromCart } = useCart();
+function CartItem({ item }: CartItemProps) {
+  const cart = useContext(CartCont);
+  if (!cart) return null;
 
-  const handleQuantityChange = (newQuantity: number) => {
-    if (newQuantity >= 0) {
-      updateQuantity(item.id, newQuantity);
-    }
-  };
+  const { updateQuantity, removeItem } = cart;
+  const lineTotal = +(item.price * item.quantity).toFixed(2);
 
   return (
-    <div className="flex items-center py-4 border-b border-gray-200 dark:border-gray-700">
-      <div className="w-24 h-24 flex-shrink-0">
-        <img src={item.image} alt={item.title} className="w-full h-full object-contain rounded-md" />
-      </div>
-      <div className="ml-4 flex-1">
-        <Link to={`/products/${item.id}`} className="text-lg font-medium hover:text-primary-600 dark:hover:text-primary-400">{item.title}</Link>
-        <p className="text-sm text-gray-500 dark:text-gray-400">${item.price.toFixed(2)}</p>
-        <div className="flex items-center mt-2">
-          <button onClick={() => handleQuantityChange(item.quantity - 1)} className="p-1 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 disabled:opacity-50" disabled={item.quantity <= 1}>
-            <Minus className="w-4 h-4" />
-          </button>
-          <span className="mx-3 w-8 text-center">{item.quantity}</span>
-          <button onClick={() => handleQuantityChange(item.quantity + 1)} className="p-1 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">
-            <Plus className="w-4 h-4" />
+    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 border-b border-gray-200 dark:border-gray-700">
+      <img
+        src={item.image}
+        alt={item.name}
+        className="w-24 h-24 object-contain bg-white rounded-md"
+      />
+      <div className="flex-1 w-full">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h3 className="font-semibold text-gray-900 dark:text-white">{item.name}</h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400">${item.price.toFixed(2)}</p>
+          </div>
+          <button
+            onClick={() => removeItem(item.id)}
+            className="text-sm text-red-600 hover:underline"
+          >
+            Remove
           </button>
         </div>
-      </div>
-      <div className="ml-4 flex flex-col items-end">
-        <p className="text-lg font-semibold">${(item.price * item.quantity).toFixed(2)}</p>
-        <button onClick={() => removeFromCart(item.id)} className="mt-2 text-red-500 hover:text-red-700">
-          <Trash2 className="w-5 h-5" />
-        </button>
+
+        <div className="mt-3 flex items-center justify-between">
+          <div className="inline-flex items-center rounded-md border border-gray-200 dark:border-gray-700 overflow-hidden">
+            <button
+              aria-label="Decrease quantity"
+              onClick={() => updateQuantity(item.id, item.quantity - 1)}
+              className="px-3 py-1.5 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              −
+            </button>
+            <span className="px-4 py-1.5 text-gray-900 dark:text-white min-w-[2ch] text-center">
+              {item.quantity}
+            </span>
+            <button
+              aria-label="Increase quantity"
+              onClick={() => updateQuantity(item.id, item.quantity + 1)}
+              className="px-3 py-1.5 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              +
+            </button>
+          </div>
+
+          <div className="text-right">
+            <p className="text-sm text-gray-500 dark:text-gray-400">Line total</p>
+            <p className="font-semibold text-gray-900 dark:text-white">${lineTotal.toFixed(2)}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
-};
+}
 
 export default CartItem;
+
+

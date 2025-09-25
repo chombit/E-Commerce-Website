@@ -1,29 +1,39 @@
 
-import { Routes, Route } from 'react-router-dom';
-import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
-import ProductDetail from './components/product/ProductDetail';
-import Cart from './pages/Cart';
-import Checkout from './pages/Checkout';
-import OrderSuccess from './pages/OrderSuccess';
-import Login from './pages/Login';
+import Home from "./pages/Home"
+import Navigation from "./component/layout/Navigation"
+import { Routes, Route } from "react-router-dom"
+import Footer from "./component/layout/Footer"
+import { Suspense, lazy } from "react"
+
+const ProductPage = lazy(() => import("./pages/Product"))
+const ProductDetail = lazy(() => import("./pages/productDetail"))
+const CartPage = lazy(() => import("./pages/Cart"))
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
-      <Header />
-      <main className="flex-1">
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/products/:id" element={<ProductDetail />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
-         <Route path="/order-success" element={<OrderSuccess />} />
-          <Route path="*" element={<div className="container mx-auto px-4 py-10">Page not found</div>} />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
-  );
+    <>
+       <div className="min-h-screen flex flex-col">
+       <Navigation />
+       <main className="flex-1 bg-gray-50">
+       <Suspense fallback={<div className="p-6">Loading...</div>}>
+       <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/product" element={<ProductPage />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/cart" element={<CartPage />} />
+      </Routes>
+      </Suspense>
+       </main>
+   
+        <Footer />
+        </div>
+    </>
+   
+   
+   
+
+  )
+
 }
 
+export default App;

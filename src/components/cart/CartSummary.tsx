@@ -1,43 +1,46 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useCart } from '../../context/CartContext';
-import Button from '../ui/Button';
+import { useContext } from "react";
+import { CartCont } from "../../Context/CartContext";
 
-const CartSummary: React.FC = () => {
-  const { getTotalPrice } = useCart();
-  const subtotal = getTotalPrice();
-  const shipping = subtotal > 50 ? 0 : 5.99;
-  const tax = subtotal * 0.08;
-  const total = subtotal + shipping + tax;
+function CartSummary() {
+  const cart = useContext(CartCont);
+  if (!cart) return null;
+
+  const { subtotal, tax, shipping, total, clearCart, cartItems } = cart;
+  const isEmpty = cartItems.length === 0;
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md lg:sticky lg:top-24">
-      <h2 className="text-2xl font-bold mb-4">Order Summary</h2>
-      <div className="space-y-2">
-        <div className="flex justify-between">
-          <span>Subtotal</span>
-          <span>${subtotal.toFixed(2)}</span>
-        </div>
-        <div className="flex justify-between">
-          <span>Shipping</span>
-          <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
-        </div>
-        <div className="flex justify-between">
-          <span>Tax</span>
-          <span>${tax.toFixed(2)}</span>
-        </div>
-        <div className="flex justify-between text-xl font-bold pt-4 border-t border-gray-200 dark:border-gray-700">
-          <span>Total</span>
-          <span>${total.toFixed(2)}</span>
-        </div>
+    <aside className="h-fit p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+      <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
+      <div className="space-y-2 text-sm">
+        <div className="flex justify-between"><span>Subtotal</span><span>${subtotal.toFixed(2)}</span></div>
+        <div className="flex justify-between"><span>Tax (10%)</span><span>${tax.toFixed(2)}</span></div>
+        <div className="flex justify-between"><span>Shipping</span><span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span></div>
+        <hr className="my-2 border-gray-200 dark:border-gray-700" />
+        <div className="flex justify-between text-base font-semibold"><span>Total</span><span>${total.toFixed(2)}</span></div>
       </div>
-      <div className="mt-6">
-        <Link to="/checkout" className="block">
-          <Button className="w-full" size="lg">Proceed to Checkout</Button>
-        </Link>
+
+      <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">Shipping is free for orders over $100.</p>
+
+      <div className="mt-4 space-y-2">
+        <button
+          disabled={isEmpty}
+          className={`w-full py-2 rounded-lg font-semibold ${isEmpty ? 'bg-gray-300 text-gray-600 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
+        >
+          Proceed to Checkout
+        </button>
+
+        <button
+          disabled={isEmpty}
+          onClick={clearCart}
+          className={`w-full py-2 rounded-lg font-semibold border ${isEmpty ? 'text-gray-500 border-gray-300 cursor-not-allowed' : 'text-red-600 border-red-300 hover:bg-red-50 dark:hover:bg-red-900/10'}`}
+        >
+          Clear Cart
+        </button>
       </div>
-    </div>
+    </aside>
   );
-};
+}
 
 export default CartSummary;
+
+

@@ -1,16 +1,25 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { BrowserRouter } from 'react-router-dom'
-import App from './App.tsx'
-import { CartProvider } from './context/CartContext.tsx'
 
-createRoot(document.getElementById('root')!).render(
+import App from './App.tsx'
+
+
+import { BrowserRouter } from 'react-router-dom'
+import Themeprov from './Context/ThemeProvide'
+
+
+import { CartProvider } from "./Context/CartContext.tsx"; // import your cart provider
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>      
+
+    <Themeprov>
       <CartProvider>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </CartProvider>
-    </BrowserRouter>
-  </StrictMode>,
-)
+    </Themeprov>
+  </StrictMode>
+);
+

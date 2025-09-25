@@ -1,46 +1,33 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import CartItem from '../components/cart/CartItem';
-import CartSummary from '../components/cart/CartSummary';
-import Button from '../components/ui/Button';
-import { useCart } from '../context/CartContext';
+import { useContext } from "react";
+import { CartCont } from "../Context/CartContext";
+import CartItem from "../components/cart/CartItem";
+import CartSummary from "../components/cart/CartSummary";
 
-const Cart: React.FC = () => {
-  const { cartItems, clearCart, getTotalItems } = useCart();
-  const count = getTotalItems();
+function Cart() {
+  const cart = useContext(CartCont);
+  if (!cart) return null;
+
+  const isEmpty = cart.cartItems.length === 0;
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl md:text-3xl font-bold mb-6">Your Cart</h1>
-
-      {count === 0 ? (
-        <div className="text-center py-16">
-          <h2 className="text-xl font-semibold mb-2">Your cart is empty</h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-6">Browse products and add items to your cart.</p>
-          <Link to="/products">
-            <Button>Continue Shopping</Button>
-          </Link>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg shadow p-4 sm:p-6">
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-sm text-gray-600 dark:text-gray-400">{count} item{count !== 1 ? 's' : ''} in your cart</p>
-              <button onClick={clearCart} className="text-red-600 hover:text-red-700 text-sm">Clear cart</button>
-            </div>
-            <div>
-              {cartItems.map((item) => (
+    <div className="bg-gray-50 dark:bg-gray-900 dark:text-white">
+      <div className="max-w-6xl mx-auto p-6 grid grid-cols-1 md:grid-cols-[1fr_320px] gap-6">
+        <section>
+          <h1 className="text-2xl font-bold mb-4">Your Cart</h1>
+          {isEmpty ? (
+            <div className="p-8 text-center rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">Your cart is empty.</div>
+          ) : (
+            <div className="rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+              {cart.cartItems.map((item) => (
                 <CartItem key={item.id} item={item} />
               ))}
             </div>
-          </div>
-          <div>
-            <CartSummary />
-          </div>
-        </div>
-      )}
+          )}
+        </section>
+        <CartSummary />
+      </div>
     </div>
   );
-};
+}
 
 export default Cart;
