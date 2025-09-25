@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Sun, Moon, ShoppingCart, Menu, X } from 'lucide-react';
 import Button from '../ui/Button';
-import { useTheme } from '../../context/ThemeContext';
 import { useCart } from '../../context/CartContext';
-import { useUser } from '../../context/UserContext';
-import Logo from './Logo';
 
 const Header: React.FC = () => {
-  const { theme, toggleTheme } = useTheme();
-  const { getTotalItems } = useCart();
-  const { isLoggedIn, user, logout } = useUser();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { getTotalItems } = useCart();
   const totalItems = getTotalItems();
+  const isLoggedIn = false;
+  const user = null as { username: string } | null;
+  const theme = 'light';
+
+  const logout = () => {
+    // Mock logout
+  };
 
   const navLinks = [
     { to: '/logo', text: 'TinaMart' },    
@@ -52,7 +54,6 @@ const Header: React.FC = () => {
 
           <div className="flex items-center space-x-4">
             <button
-              onClick={toggleTheme}
               className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
               aria-label="Toggle theme"
             >

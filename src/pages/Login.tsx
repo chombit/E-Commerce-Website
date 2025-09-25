@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
-import { useUser } from '../context/UserContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
-  const { login } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -18,11 +16,11 @@ const Login: React.FC = () => {
     setIsLoading(true);
     setError(null);
     try {
-      await login(email, password);
+      // Mock login - just navigate to home
       const to = (location as any).state?.from || '/';
       navigate(to, { replace: true });
     } catch (err: any) {
-      setError(err?.response?.data?.message || 'Login failed');
+      setError('Login failed');
     } finally {
       setIsLoading(false);
     }

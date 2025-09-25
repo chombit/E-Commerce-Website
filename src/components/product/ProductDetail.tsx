@@ -6,7 +6,7 @@ import Button from '../ui/Button';
 import LoadingSpinner from '../ui/LoadingSpinner';
 import { useCart } from '../../context/CartContext';
 
-const ProductDetail: React.FC = () => {
+const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
@@ -15,9 +15,15 @@ const ProductDetail: React.FC = () => {
 
   useEffect(() => {
     const load = async () => {
+      if (!id) {
+        setError('Product ID is required');
+        setLoading(false);
+        return;
+      }
+      
       try {
-        const data = await ApiService.getProduct(Number(id));
-        setProduct(data);
+        const response = await ApiService.getProduct(id);
+        setProduct(response);
       } catch {
         setError('Failed to load product');
       } finally {
@@ -39,7 +45,7 @@ const ProductDetail: React.FC = () => {
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{product.title}</h1>
         <p className="mt-2 text-gray-600 dark:text-gray-300">{product.description}</p>
         <p className="mt-4 text-2xl font-bold text-blue-600 dark:text-blue-400">${product.price.toFixed(2)}</p>
-        <Button className="mt-6" onClick={() => addToCart(product, 1)}>Add to cart</Button>
+        <Button className="mt-6" onClick={() => product && addToCart(product, 1)}>Add to cart</Button>
       </div>
     </div>
   );

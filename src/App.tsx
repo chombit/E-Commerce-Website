@@ -1,7 +1,7 @@
+
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
-import Products from './components/product/Products';
 import ProductDetail from './components/product/ProductDetail';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
@@ -14,22 +14,16 @@ function App() {
       <Header />
       <main className="flex-1">
         <Routes>
-
           <Route path="/login" element={<Login />} />
-          <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
          <Route path="/order-success" element={<OrderSuccess />} />
-         <Route path="*" element={<div className="container mx-auto px-4 py-10">Page not found</div>} />
-          
+          <Route path="*" element={<div className="container mx-auto px-4 py-10">Page not found</div>} />
         </Routes>
       </main>
       <Footer />
     </div>
   );
 }
-
-export default App;
-
 

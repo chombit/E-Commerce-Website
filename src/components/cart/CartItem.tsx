@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import type { CartItem as CartItemType } from '../../types';
-import { useCart } from '../../context/CartContext';
 import { Trash2, Plus, Minus } from 'lucide-react';
+import { useCart } from '../../context/CartContext';
 
 interface CartItemProps {
   item: CartItemType;
