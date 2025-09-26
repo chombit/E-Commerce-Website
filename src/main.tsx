@@ -5,7 +5,7 @@ import './index.css'
 import App from './App.tsx'
 
 
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import Themeprov from './Context/ThemeProvide'
 
 
@@ -15,9 +15,9 @@ createRoot(document.getElementById("root")!).render(
 
     <Themeprov>
       <CartProvider>
-        <BrowserRouter>
+        <HashRouter>
           <App />
-        </BrowserRouter>
+        </HashRouter>
       </CartProvider>
     </Themeprov>
   </StrictMode>

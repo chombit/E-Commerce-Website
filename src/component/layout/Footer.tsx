@@ -3,7 +3,7 @@ import { ArrowRight, Mail, MapPin, Phone, ShoppingCart } from "lucide-react"
 function Footer(){
     return(
     <div  className="bg-slate-900 text-gray-400 h-[500px]">
-        <div className="grid grid-cols-4 grid-rows-1 pl-[200px] pt-[50px] gap-4  ">
+        <div className="grid grid-cols-4 grid-rows-1 pl-[150px] pt-[50px] gap-4  ">
             <div>
                 <div className="inline-flex items-center justify-center rounded-full p-1 bg-gradient-to-r from-pink-500 to-blue-900 my-[10px]">
                   <ShoppingCart className="w-6 h-6 text-white"/>
@@ -41,8 +41,8 @@ function Footer(){
 
 
         </div>
-        <hr  className="ml-[200px]  mr-[100px] text-white/15"/>
-        <div className=" pl-[200px] pt-[50px] flex ">
+        <hr  className="ml-[150px]  mr-[100px] text-white/15"/>
+        <div className=" pl-[150px] pt-[50px] flex ">
           
           <div>
              <h5 className="font-bold">Stay Updated</h5>
@@ -63,7 +63,7 @@ Get the latest deals and product updates
     
    
    </div>
-   <hr className="text-white/15 ml-[200px]  mr-[100px] mt-5"/>
+   <hr className="text-white/15 ml-[150px]  mr-[100px] mt-5"/>
         </div>
 
     )

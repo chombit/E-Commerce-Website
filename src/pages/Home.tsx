@@ -366,7 +366,7 @@ function Home() {
    
     <div className="bg-white/50 dark:bg-gray-900 dark:text-white">
       <div >
-    <h1 className="pt-[20px] font-bold text-3xl flex justify-center items-center ">why Choose B-Shop</h1>
+    <h1 className="pt-[20px] font-bold text-3xl flex justify-center items-center ">why Choose Tina-Mart</h1>
     <p className="flex justify-center items-center p-3 text-xl">We provide the best shopping experience with these features</p>
     <ul className="flex pl-[350px]   space-x-7 mt-10">
      <li className="px-[40px] shadow-sm  bg-white shadow-gray-400 border-0 rounded-2xl py-14 mr-6 hover:transform transition scale-100 hover:shadow-lg dark:bg-gray-800"> <div className="bg-blue-100 w-15 h-15 p-3 mb-7  ml-20  rounded-full">
@@ -466,10 +466,11 @@ Only the best products <br /> <span className="flex justify-center">for you</spa
 
     </div>
   ))}
-  <div className="flex justify-center p-6">
-  <button className="bg-blue-600 min-w-[180px] h-[48px] items-center px-4 text-white rounded-2xl justify-center">
+  <div className="fex justify-center ml-[500px]">
+      <Link to="/product">
+  <button className="bg-blue-600 min-w-[180px] h-[48px] items-center px-4 text-white rounded-2xl flex justify-center">
     View Product <ArrowRight className="text-white ml-2"/>
-  </button>
+  </button></Link>
   </div>
 </div>
 </div>

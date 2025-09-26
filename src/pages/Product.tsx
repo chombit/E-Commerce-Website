@@ -58,10 +58,10 @@ function Product(){
     
    return(
       <div className="bg-gray-50 dark:bg-gray-900 dark:text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
-  <h1 className="font-bold text-3xl">Products</h1>
-  <p className="mt-2">Discover our wide range of products</p>
-  <div className="mt-6 bg-white border-1 shadow-lg border-white rounded-xl dark:bg-gray-800 dark:border-gray-800"> 
+        <div className="w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+  <h1 className="font-bold text-3xl ml-20 ">Products</h1>
+  <p className="mt-2 ml-20">Discover our wide range of products</p>
+  <div className="mt-6 ml-20 bg-white border-1 shadow-lg border-white rounded-xl dark:bg-gray-800 dark:border-gray-800"> 
     <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
       <li>
       <span>Search</span>
@@ -155,14 +155,14 @@ function Product(){
       </li>
     </ul>
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 dark:border-gray-800">
-         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className=" mx-auto px-4 sm:px-6 lg:px-2 mt-8 dark:border-gray-800">
+         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-[1500px]">
      
         {
           post.map((pon)=> {
             const inCart = !!cart?.cartItems.some((i) => i.id === pon.id.toString());
             return (
-             <div key={pon.id} className="border-0 rounded-2xl dark:shadow-gray-700 dark:bg-gray-800 dark:text-white bg-white shadow-md shadow-gray-400 p-4 transition-transform duration-200 hover:-translate-y-2">
+             <div key={pon.id} className="border-0   rounded-2xl dark:shadow-gray-700 dark:bg-gray-800 dark:text-white bg-white shadow-md shadow-gray-400 p-6 transition-transform duration-200 hover:-translate-y-2">
       <p
         className={`inline-block self-start border-0 rounded-3xl px-3 py-1 text-[12px] text-white font-bold mb-2 bg-gradient-to-r from-pink-500 to-blue-900`}
       >
